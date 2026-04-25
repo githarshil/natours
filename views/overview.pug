@@ -1,0 +1,54 @@
+extends base
+
+block content
+  main.main
+    .card-container
+      each tour in tours
+        .card
+          .card__header
+            .card__picture
+              .card__picture-overlay &nbsp;
+              img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+            h3.heading-tertirary
+              span= tour.name
+
+          .card__details
+            .card__text
+              p= tour.summary
+
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-map-pin')
+              span= tour.startLocation.description
+
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-calendar')
+              span= new Date(tour.startDates[0]).toLocaleString('en-us', { month: 'long', year: 'numeric' })
+
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-flag')
+              span= `${tour.locations.length} stops`
+
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-user')
+              span= `${tour.maxGroupSize} people`
+
+          .card__footer
+            .card__ratings
+              .card__rating-box
+                svg.card__star(style='width: 1rem; height: 1rem;')
+                  use(xlink:href='/img/icons.svg#icon-star')
+                small.card__rating-text= `${tour.ratingsAverage} rating`
+              .card__rating-box
+                svg.card__star(style='width: 1rem; height: 1rem;')
+                  use(xlink:href='/img/icons.svg#icon-star')
+                small.card__rating-text= `${tour.ratingsQuantity} reviews`
+
+            .card__price-box
+              p.card__price-only only
+              p.card__price-value= `$${tour.price}`
+
+            a.btn.btn--green.btn--small(href=`/tour/${tour._id}`) Details
