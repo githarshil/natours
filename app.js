@@ -22,7 +22,6 @@ const TourRouter = require('./routes/tourRoutes');
 const UserRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
-const compression = require('compression');
 
 app.use(helmet());
 const limiter = rateLimit({
